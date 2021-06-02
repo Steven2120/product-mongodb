@@ -36,12 +36,13 @@ router.post("/create-product", function (req, res) {
   });
 });
 
-router.put("/update-product-by-id", function (req, res) {
+router.put("/update-product-by-id/:id", function (req, res) {
   productController.updateProductById(
-    req.params,
+    req.params.id,
     req.body,
     function (err, updatedPayload) {
       if (err) {
+        console.log(err);
         res.status(500).json({ message: "Error", error: err });
       } else {
         res.json({
@@ -58,6 +59,7 @@ router.delete("/delete-product-by-id/:id", function (req, res) {
     req.params.id,
     function (err, deletedPayload) {
       if (err) {
+        console.log(err);
         res.status(500).json({ message: "Error", error: err });
       } else {
         res.json({ message: "success", data: deletedPayload });
