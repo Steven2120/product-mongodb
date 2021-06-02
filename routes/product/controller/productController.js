@@ -22,6 +22,15 @@ module.exports = {
       }
     });
   },
+  getProductById: function (id, body, callback) {
+    Product.findById({ _id: id }, body, { new: true }, function (err, payload) {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, payload);
+      }
+    });
+  },
   updateProductById: function (id, body, callback) {
     Product.findByIdAndUpdate(
       { _id: id },
